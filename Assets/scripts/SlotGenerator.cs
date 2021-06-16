@@ -8,6 +8,7 @@ public class SlotGenerator : MonoBehaviour
     public Slot[] slots;
     short slotSize = 20;
     [SerializeField] GameObject slotPrefab;
+    [SerializeField] Transform slotsHandler;
 
     public static SlotGenerator singleton { get; private set; }
     private void Start()
@@ -19,7 +20,7 @@ public class SlotGenerator : MonoBehaviour
         {
             for (short j = 0; j < fieldSize.y / slotSize; j++)
             {
-                Slot slot = Instantiate(slotPrefab, new Vector2(i*slotSize, j*slotSize), Quaternion.identity, transform).GetComponent<Slot>();
+                Slot slot = Instantiate(slotPrefab, new Vector2(i*slotSize, j*slotSize), Quaternion.identity, slotsHandler).GetComponent<Slot>();
                 slots[index] = slot;
                 index++;
             }

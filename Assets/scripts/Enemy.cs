@@ -2,12 +2,21 @@ using UnityEngine;
 using System.Collections;
 public class Enemy : MonoBehaviour
 {
+    // Moving
     bool stopped = false;
     [SerializeField] float speed;
+
+    // Kicking
     [SerializeField] float damage;
-    [SerializeField] Transform Direction;
-    [SerializeField] float hp;
     [SerializeField] float kickDelay;
+
+    [SerializeField] Transform Direction;
+
+    // Hp
+    [SerializeField] float hp;
+    [SerializeField] float maxHp;
+    [SerializeField] Transform hpBar;
+
     WaitForSeconds wait;
     public bool destroying = false;
     private void Start()
@@ -45,9 +54,17 @@ public class Enemy : MonoBehaviour
         }
         else destroying = false;
     }
-    public void GetDamage()
+    public bool GetDamage(float damage)
     {
-
+        hp -= damage;
+        if (hp <= 0)
+        {
+            //Destroy(gameObject, 0.1f);
+            gameObject.SetActive(false);
+            return true;
+        }
+        hpBar.localPosition = new Vector2(-(100 - hp / maxHp * 100), 0);
+        return false;
     }
     public void Stop()
     {
