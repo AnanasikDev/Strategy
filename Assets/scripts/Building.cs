@@ -23,6 +23,6 @@ public class Building : MonoBehaviour
     }
     private void OnDisable()
     {
-        //Destroy(gameObject, 2f);
+        Destroy(gameObject, 0.5f);
     }
 }
