@@ -6,13 +6,16 @@ public class Build : MonoBehaviour
 
     [SerializeField] GameObject CurrentBuilding;
     Camera mainCamera;
+    public bool buildable = true;
+    public static Build singleton { get; private set; }
     private void Start()
     {
+        singleton = this;
         mainCamera = Camera.main;
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Time.timeScale > 0)
+        if (Input.GetMouseButtonDown(0) && buildable && Time.timeScale > 0)
         {
             Vector3 mousePos = Input.mousePosition;
             Slot slot = SlotGenerator.singleton.slots.OrderBy(s => (s.transform.position - mousePos).sqrMagnitude).First();

@@ -6,7 +6,7 @@ public class Building : MonoBehaviour
     [SerializeField] float maxHp;
     public bool alive { get { return hp > 0; } }
     [SerializeField] Transform hpBar;
-
+    
     public bool GetDamage(float damage)
     {
         hp -= damage;
