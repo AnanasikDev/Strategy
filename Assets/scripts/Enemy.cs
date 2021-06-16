@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnDisable()
     {
+        GameManager.singleton.kills++;
         Spawner.singleton.enemies[id] = null;
         Destroy(gameObject, 1);
     }

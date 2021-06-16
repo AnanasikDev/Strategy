@@ -6,12 +6,12 @@ public class Spawner : MonoBehaviour
 
     public Enemy[] enemies;
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] float frequency; // frequency раз в секундку тик
-    [SerializeField] short mass; // Мобов за тик
+    [SerializeField] public float frequency; // frequency раз в секундку тик
+    [SerializeField] public short mass; // Мобов за тик
     public static Spawner singleton { get; private set; }
     private void Start()
     {
-        enemies = new Enemy[20];
+        enemies = new Enemy[60];
         singleton = this;
         frequency = 1 / frequency;
         InvokeRepeating("Spawn", frequency, frequency);
@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
             short index = GetFreeSlot();
             if (index == -1) return;
             Enemy e = Instantiate(enemyPrefab, transform).GetComponent<Enemy>();
-            float r = Random.Range(800, 1100);
+            float r = Random.Range(950, 1100);
             e.transform.localPosition = new Vector2(Mathf.Sin(Random.Range(-500, 500)) * r, Mathf.Cos(Random.Range(-500, 500)) * r);
             enemies[index] = e;
             e.id = index;
