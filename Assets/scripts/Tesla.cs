@@ -7,6 +7,7 @@ public class Tesla : MonoBehaviour
     [SerializeField] float damage;
     WaitForSeconds waitForZipper;
     [SerializeField] float distance;
+    Enemy enemy;
     private void Start()
     {
         waitForZipper = new WaitForSeconds(0.25f);
@@ -17,7 +18,7 @@ public class Tesla : MonoBehaviour
     {
         if (!Spawner.singleton.ContainEnemy()) return;
 
-        Enemy enemy = Spawner.singleton.enemies
+        enemy = Spawner.singleton.enemies
             
             .Where(e => e != null)
             .Where(e => (e.transform.position - transform.position).sqrMagnitude < distance)
@@ -31,16 +32,26 @@ public class Tesla : MonoBehaviour
         }
 
         zipper.LookAt(enemy.transform);
+        SetZipper(transform.position, enemy.transform.position);
         //zipper.transform.localEulerAngles = new Vector3(0, 0, zipper.transform.localEulerAngles.z);
         zipper.gameObject.SetActive(true);
         enemy.GetDamage(damage);
         if (!gameObject.activeSelf) return;
         StartCoroutine("ZipperDisable");
     }
+    void SetZipper(Vector2 startPos, Vector2 endPos)
+    {
+        float scale = Mathf.Abs(startPos.x - endPos.x);
+        zipper.transform.localScale = new Vector3(1, 1, scale/262);
+    }
     IEnumerator ZipperDisable()
     {
         if (!gameObject.activeSelf) yield break;
         yield return waitForZipper;
         zipper.gameObject.SetActive(false);
+    }
+    private void Update()
+    {
+        if (enemy != null && enemy.gameObject.activeSelf && zipper.gameObject.activeSelf) SetZipper(transform.position, enemy.transform.position);
     }
 }
