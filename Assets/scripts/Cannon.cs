@@ -6,16 +6,25 @@ public class Cannon : MonoBehaviour
     [SerializeField] float distance;
     [SerializeField] GameObject Bullet;
     [SerializeField] Transform handler;
+    [SerializeField] float freq;
     Building building;
+    bool enemyNear = false;
     private void Start()
     {
         distance *= 1000;
         building = GetComponent<Building>();
-        InvokeRepeating("Aim", 0.2f, 0.2f);
+        freq = 1 / freq;
+
+        InvokeRepeating("Aim", 0, 0.1f);
+        InvokeRepeating("Shoot", 0, freq);
     }
     void Aim()
     {
-        if (!Spawner.singleton.ContainEnemy() || !building.alive) return;
+        if (!Spawner.singleton.ContainEnemy() || !building.alive)
+        {
+            enemyNear = false;
+            return;
+        }
 
         enemy = Spawner.singleton.enemies
 
@@ -23,14 +32,18 @@ public class Cannon : MonoBehaviour
             .Where(e => (e.transform.position - transform.position).sqrMagnitude < distance)
             .OrderBy(e => (e.transform.position - transform.position).sqrMagnitude).FirstOrDefault();
 
-        if (enemy == null || !enemy.gameObject.activeSelf) return;
+        if (enemy == null || !enemy.gameObject.activeSelf)
+        {
+            enemyNear = false;
+            return;
+        }
 
         handler.transform.LookAt(enemy.transform);
-
-        Shoot();
+        enemyNear = true;
     }
     void Shoot()
     {
-        Instantiate(Bullet, transform.position, handler.transform.rotation, GameManager.singleton.transform);
+        if (enemyNear)
+            Instantiate(Bullet, transform.position, handler.transform.rotation, GameManager.singleton.transform);
     }
 }

@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.layer == 7)
         {
             other.GetComponent<Enemy>().GetDamage(damage);
+            Destroy(gameObject);
         }
     }
 }
