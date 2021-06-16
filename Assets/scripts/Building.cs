@@ -4,6 +4,7 @@ public class Building : MonoBehaviour
 {
     [SerializeField] float hp;
     [SerializeField] float maxHp;
+    public int cost;
     public bool alive { get { return hp > 0; } }
     [SerializeField] Transform hpBar;
     

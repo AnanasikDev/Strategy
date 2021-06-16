@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public Transform TownHall;
     [SerializeField] GameObject loseScreen;
 
+    [SerializeField] TextMeshProUGUI killsText;
+    [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] TextMeshProUGUI moneyText;
     int _kills;
     public int kills 
     {
@@ -16,19 +19,32 @@ public class GameManager : MonoBehaviour
             _kills = value;
             killsText.text = "kills: " + _kills.ToString();
 
-            level = _kills / 100;
+            if (_kills % 100 == 0 && _kills != 0) level++;
+
+            if (kills % 5 == 0) money++;
         }
     }
-    [SerializeField] TextMeshProUGUI killsText;
-    public int money;
-    [SerializeField] TextMeshProUGUI moneyText;
+    int _money = 20;
+    public int money
+    {
+        get { return _money; }
+        set
+        {
+            if (_money != value)
+            {
+                _money = value;
+                moneyText.text = "money: " + _money.ToString();
+            }
+        }
+    }
     int _level = 1;
     public int level
     {
         get { return _level; }
         set
         {
-            if (_level == value) return;
+            if (_level == value || _level == 0) return;
+
             _level = value;
             levelText.text = "level: " + _level.ToString();
 
@@ -47,7 +63,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    [SerializeField] TextMeshProUGUI levelText;
     public static GameManager singleton { get; private set; }
     private void Awake()
     {

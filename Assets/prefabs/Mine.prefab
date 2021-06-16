@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4904509348509085043, guid: ff60d4387cc71b045bc2be330d4e8fa6, type: 3}
+  m_Sprite: {fileID: 6139739059151834444, guid: ff60d4387cc71b045bc2be330d4e8fa6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -85,8 +85,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2410034228609841001}
   - component: {fileID: 2410034228609841000}
+  - component: {fileID: 922601305734822350}
   m_Layer: 5
-  m_Name: Wall
+  m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +131,20 @@ MonoBehaviour:
   maxHp: 40
   cost: 6
   hpBar: {fileID: 2410034229918830743}
+--- !u!114 &922601305734822350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410034228609840998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2291cea90720f4aad7096239506e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freq: 1
+  mass: 1
 --- !u!1 &2410034228656916353
 GameObject:
   m_ObjectHideFlags: 0

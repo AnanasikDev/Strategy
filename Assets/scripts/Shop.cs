@@ -4,6 +4,9 @@ public class Shop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     Animator anim;
     bool opened = false;
+
+    [SerializeField] Building Tesla;
+    [SerializeField] Building Wall;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -31,5 +34,9 @@ public class Shop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         Build.singleton.buildable = true;
+    }
+    public void SetBuilding(Building building)
+    {
+        Build.singleton.CurrentBuilding = building;
     }
 }

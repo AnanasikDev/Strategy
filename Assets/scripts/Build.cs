@@ -4,7 +4,8 @@ public class Build : MonoBehaviour
 {
     // Canvas script;
 
-    [SerializeField] GameObject CurrentBuilding;
+    public Building CurrentBuilding;
+
     [SerializeField] Transform BuildingsHandler;
     Camera mainCamera;
     public bool buildable = true;
@@ -16,8 +17,10 @@ public class Build : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && buildable && Time.timeScale > 0)
+        if (CurrentBuilding != null)
+        if (Input.GetMouseButtonDown(0) && buildable && Time.timeScale > 0 && CurrentBuilding.cost <= GameManager.singleton.money)
         {
+            GameManager.singleton.money -= CurrentBuilding.cost;
             Vector3 mousePos = Input.mousePosition;
             Slot slot = SlotGenerator.singleton.slots.OrderBy(s => (s.transform.position - mousePos).sqrMagnitude).First();
             if (slot.Empty)
@@ -26,12 +29,6 @@ public class Build : MonoBehaviour
                 obj.position = slot.transform.position;
                 slot.Create(obj.gameObject);
             }
-                //new Vector3(Mathf.RoundToInt(mousePos.x / 50) * 50, Mathf.RoundToInt(mousePos.y / 100) * 100, 0);
-            //new Vector2(Mathf.RoundToInt(mousePos.x / 50) * 50, Mathf.RoundToInt(mousePos.y / 100) * 100);
         }
-    }
-    public void ChangeCurrentBuilding(GameObject value)
-    {
-        CurrentBuilding = value;
     }
 }
