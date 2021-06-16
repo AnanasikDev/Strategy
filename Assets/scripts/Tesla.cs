@@ -41,8 +41,8 @@ public class Tesla : MonoBehaviour
     }
     void SetZipper(Vector2 startPos, Vector2 endPos)
     {
-        float scale = Mathf.Abs(startPos.x - endPos.x);
-        zipper.transform.localScale = new Vector3(1, 1, scale/262);
+        float scale = Vector2.Distance(startPos, endPos);
+        zipper.transform.localScale = new Vector3(1, 1, scale/460); // 262
     }
     IEnumerator ZipperDisable()
     {
