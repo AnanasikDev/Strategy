@@ -4,29 +4,42 @@ public class Enemy : MonoBehaviour
 {
     bool stopped = false;
     [SerializeField] float speed;
+    [SerializeField] float damage;
     [SerializeField] Transform Direction;
+    [SerializeField] float hp;
+    [SerializeField] float kickDelay;
+    WaitForSeconds wait;
+    public bool destroying = false;
     private void Start()
     {
         // Getting direction to move
         Direction.transform.LookAt(GameManager.singleton.TownHall);
+
+        wait = new WaitForSeconds(kickDelay);
     }
     private void Update()
     {
         if (!stopped)
         {
-            transform.Translate(Direction.forward * speed);
+            transform.Translate(Direction.forward * speed * Time.timeScale);
         }
     }
     public void DestroyBuilding(GameObject buildingObject)
     {
-        IEnumerator c = DamageBuilding(buildingObject);
+        destroying = true;
+        Building building = buildingObject.GetComponent<Building>();
+        IEnumerator c = DamageBuilding(building);
         StartCoroutine(c);
-
     }
-    IEnumerator DamageBuilding(GameObject buildingObject)
+    IEnumerator DamageBuilding(Building building)
     {
-        yield return new WaitForSeconds(1);
-        Destroy(buildingObject); // needa destroy from slot
+        if(hp > 0 && building.alive)
+        {
+            building.GetDamage(damage);
+            yield return new WaitForSeconds(1);
+            yield return DamageBuilding(building);
+        }
+        else destroying = false;
     }
     public void GetDamage()
     {

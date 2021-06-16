@@ -9,7 +9,7 @@ public class CheckCollision : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.layer == 6) // Collision with building
+        if (other.gameObject.layer == 6 && !enemyScript.destroying) // Collision with building
         {
             enemyScript.Stop();
             enemyScript.DestroyBuilding(other.transform.parent.gameObject);
