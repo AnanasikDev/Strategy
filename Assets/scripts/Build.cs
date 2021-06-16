@@ -8,6 +8,8 @@ public class Build : MonoBehaviour
     public Building CurrentBuilding;
     [SerializeField] TextMeshProUGUI[] costTexts;
 
+    public Building[] buildings;
+
     [SerializeField] Transform BuildingsHandler;
     Camera mainCamera;
     public bool buildable = true;
@@ -16,6 +18,7 @@ public class Build : MonoBehaviour
     {
         singleton = this;
         mainCamera = Camera.main;
+        buildings = new Building[SlotGenerator.singleton.slots.Length];
     }
     private void Update()
     {
@@ -29,14 +32,31 @@ public class Build : MonoBehaviour
                 Transform obj = Instantiate(CurrentBuilding, BuildingsHandler).transform;
                 obj.position = slot.transform.position;
                 slot.Create(obj.gameObject);
+                buildings[GetFreeId()] = obj.GetComponent<Building>();
                 GameManager.singleton.money -= CurrentBuilding.cost;
                 Mine mine;
                 if (CurrentBuilding.TryGetComponent<Mine>(out mine))
                 {
-                    CurrentBuilding.cost = Mathf.RoundToInt(Mathf.Pow(CurrentBuilding.cost, 1.25f) / 1.5f);
+                    CurrentBuilding.cost = Mathf.RoundToInt(CurrentBuilding.cost * 1.75f);
                     costTexts[CurrentBuilding.id].text = CurrentBuilding.cost.ToString();
                 }
             }
         }
+    }
+    int GetFreeId()
+    {
+        for (int i = 0; i < buildings.Length; i++)
+        {
+            if (buildings[i] == null) return i;
+        }
+        return -1;
+    }
+    public int GetBuildedId()
+    {
+        for (int i = 0; i < buildings.Length; i++)
+        {
+            if (buildings[i] != null) return i;
+        }
+        return -1;
     }
 }

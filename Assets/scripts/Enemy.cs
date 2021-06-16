@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 public class Enemy : MonoBehaviour
 {
     // Moving
@@ -22,10 +23,23 @@ public class Enemy : MonoBehaviour
     public bool destroying = false;
     private void Start()
     {
-        // Getting direction to move
-        Direction.transform.LookAt(GameManager.singleton.TownHall);
-
         wait = new WaitForSeconds(kickDelay);
+        InvokeRepeating("GetDirInfo", 0, 0.5f);
+    }
+    void GetDirInfo()
+    {
+        Transform nearestBuilding;
+
+        if (Build.singleton.GetBuildedId() != -1)
+        {
+            nearestBuilding = Build.singleton.buildings
+                .Where(b => b != null)
+                .OrderBy(b => (transform.position - b.transform.position).sqrMagnitude).First().transform;
+        }
+
+        else nearestBuilding = GameManager.singleton.TownHall;
+
+        Direction.transform.LookAt(nearestBuilding);
     }
     private void Update()
     {
@@ -48,6 +62,7 @@ public class Enemy : MonoBehaviour
             if (building.GetDamage(damage))
             {
                 destroying = false;
+                GetDirInfo();
                 yield break;
             }
             yield return new WaitForSeconds(1);
