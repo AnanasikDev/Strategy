@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         {
             if (_damage == value) return;
 
+            _damage = value;
             damageText.text = "damage: " + Mathf.RoundToInt(_damage).ToString();
         }
     }
