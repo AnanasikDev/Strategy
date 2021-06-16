@@ -30,7 +30,5 @@ public class SlotGenerator : MonoBehaviour
             }
         }
         TownHall.singleton.Init();
-
-        FindObjectOfType<Mine>().Init();
     }
 }

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 6489554521838624991}
   - component: {fileID: 326643955}
   - component: {fileID: 326643956}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,6 +283,7 @@ MonoBehaviour:
   hp: 25
   maxHp: 25
   hpBar: {fileID: 4575050148987338617}
+  id: 0
   destroying: 0
 --- !u!61 &6489554521881861050
 BoxCollider2D:

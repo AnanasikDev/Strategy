@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
     public bool GetDamage(float damage)
     {
         hp -= damage;
+        GameManager.singleton.damage += damage;
         if (hp <= 0)
         {
             //Destroy(gameObject, 0.1f);

@@ -5,8 +5,6 @@ public class Shop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     Animator anim;
     bool opened = false;
 
-    [SerializeField] Building Tesla;
-    [SerializeField] Building Wall;
     private void Start()
     {
         anim = GetComponent<Animator>();

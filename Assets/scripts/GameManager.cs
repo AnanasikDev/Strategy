@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI killsText;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] TextMeshProUGUI damageText;
     int _kills;
     public int kills 
     {
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
             if (kills % 5 == 0) money++;
         }
     }
-    int _money = 20;
+    int _money = 100;
     public int money
     {
         get { return _money; }
@@ -61,6 +62,17 @@ public class GameManager : MonoBehaviour
             {
                 Spawner.singleton.mass = (short)Mathf.RoundToInt(Spawner.singleton.mass * 1.5f);
             }
+        }
+    }
+    float _damage = 0;
+    public float damage
+    {
+        get { return _damage; }
+        set
+        {
+            if (_damage == value) return;
+
+            damageText.text = "damage: " + Mathf.RoundToInt(_damage).ToString();
         }
     }
     public static GameManager singleton { get; private set; }
