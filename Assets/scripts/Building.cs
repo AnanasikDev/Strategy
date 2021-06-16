@@ -1,9 +1,10 @@
 using UnityEngine;
-
+using TMPro;
 public class Building : MonoBehaviour
 {
     [SerializeField] float hp;
     [SerializeField] float maxHp;
+    public short id;
     public int cost;
     public bool alive { get { return hp > 0; } }
     [SerializeField] Transform hpBar;
