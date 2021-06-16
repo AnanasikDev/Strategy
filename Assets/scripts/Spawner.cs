@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
         if (index == -1) return;
         Enemy e = Instantiate(enemyPrefab, new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)), Quaternion.identity, transform).GetComponent<Enemy>();
         enemies[index] = e;
+        e.id = index;
     }
     short GetFreeSlot()
     {

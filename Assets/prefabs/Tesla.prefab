@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zipper: {fileID: 3756859619748781394}
   damage: 5
-  distance: 45
+  distance: 70
 --- !u!1 &3333176534195552945
 GameObject:
   m_ObjectHideFlags: 0

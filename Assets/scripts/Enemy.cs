@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform hpBar;
 
     WaitForSeconds wait;
+    public short id;
     public bool destroying = false;
     private void Start()
     {
@@ -73,5 +74,10 @@ public class Enemy : MonoBehaviour
     public void Go()
     {
         stopped = false;
+    }
+    private void OnDisable()
+    {
+        Spawner.singleton.enemies[id] = null;
+        Destroy(gameObject, 1);
     }
 }

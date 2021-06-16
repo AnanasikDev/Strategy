@@ -23,19 +23,24 @@ public class Tesla : MonoBehaviour
             .Where(e => (e.transform.position - transform.position).sqrMagnitude < distance)
             .OrderBy(e => (e.transform.position - transform.position).sqrMagnitude).FirstOrDefault();
 
-        if (enemy == null) return;
+        print(enemy);
+        if (enemy == null || !enemy.gameObject.activeSelf)
+        {
+            zipper.gameObject.SetActive(false);
+            return;
+        }
 
         zipper.LookAt(enemy.transform);
         //zipper.transform.localEulerAngles = new Vector3(0, 0, zipper.transform.localEulerAngles.z);
         zipper.gameObject.SetActive(true);
         enemy.GetDamage(damage);
+        if (!gameObject.activeSelf) return;
         StartCoroutine("ZipperDisable");
     }
     IEnumerator ZipperDisable()
     {
         if (!gameObject.activeSelf) yield break;
         yield return waitForZipper;
-        if (!gameObject.activeSelf) yield break;
         zipper.gameObject.SetActive(false);
     }
 }
