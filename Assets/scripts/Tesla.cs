@@ -24,7 +24,6 @@ public class Tesla : MonoBehaviour
             .Where(e => (e.transform.position - transform.position).sqrMagnitude < distance)
             .OrderBy(e => (e.transform.position - transform.position).sqrMagnitude).FirstOrDefault();
 
-        print(enemy);
         if (enemy == null || !enemy.gameObject.activeSelf)
         {
             zipper.gameObject.SetActive(false);
