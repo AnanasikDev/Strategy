@@ -35,7 +35,11 @@ public class Enemy : MonoBehaviour
     {
         if(hp > 0 && building.alive)
         {
-            building.GetDamage(damage);
+            if (building.GetDamage(damage))
+            {
+                destroying = false;
+                yield break;
+            }
             yield return new WaitForSeconds(1);
             yield return DamageBuilding(building);
         }

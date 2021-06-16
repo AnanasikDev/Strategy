@@ -6,14 +6,14 @@ public class SlotGenerator : MonoBehaviour
 
     Vector2 fieldSize = new Vector2(1000, 500);
     public Slot[] slots;
-    short slotSize = 50;
+    short slotSize = 20;
     [SerializeField] GameObject slotPrefab;
 
     public static SlotGenerator singleton { get; private set; }
     private void Start()
     {
         singleton = this;
-        slots = new Slot[(int)(fieldSize.x * fieldSize.y / 2500)];
+        slots = new Slot[(int)(fieldSize.x * fieldSize.y / slotSize / slotSize)];
         short index = 0;
         for (short i = 0; i < fieldSize.x / slotSize; i++)
         {
