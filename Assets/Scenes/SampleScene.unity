@@ -240,9 +240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2927d4598bb494baae921330fa4371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  hp: 0
-  radius: 0
+  a1: 20
+  a2: 1
+  a3: 0
+  a4: 0
+  format: "\u0421\u0442\u043E\u0439\u043A\u043E\u0441\u0442\u044C: a1<br>\u041C\u043E\u043D\u0435\u0442
+    \u0432 \u0441\u0435\u043A\u0443\u043D\u0434\u0443: a2"
   info: {fileID: 1230269328}
 --- !u!1 &117207151
 GameObject:
@@ -1782,8 +1785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a373b9708bafc6b4eb8e06c2cfd0d690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
-  maxHp: 50
+  hp: 100
+  maxHp: 100
   id: 0
   cost: 0
   hpBar: {fileID: 1366108711}
@@ -2372,9 +2375,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2927d4598bb494baae921330fa4371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  hp: 2
-  radius: 3
+  a1: 15
+  a2: 5
+  a3: 70
+  a4: 0
+  format: "\u0421\u0442\u043E\u0439\u043A\u043E\u0441\u0442\u044C: a1<br>\u0423\u0440\u043E\u043D:
+    a2<br>\u0420\u0430\u0434\u0438\u0443\u0441: a3"
   info: {fileID: 1230269328}
 --- !u!1 &999445430
 GameObject:
@@ -2568,9 +2574,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2927d4598bb494baae921330fa4371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
-  hp: 2
-  radius: 0
+  a1: 30
+  a2: 25
+  a3: 45
+  a4: 0
+  format: "\u0421\u0442\u043E\u0439\u043A\u043E\u0441\u0442\u044C: a1<br>\u0423\u0440\u043E\u043D:
+    a2<br>\u0420\u0430\u0434\u0438\u0443\u0441: a3"
   info: {fileID: 1230269328}
 --- !u!1 &1049422081
 GameObject:
@@ -4273,9 +4282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2927d4598bb494baae921330fa4371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  hp: 0
-  radius: 0
+  a1: 40
+  a2: 0
+  a3: 0
+  a4: 0
+  format: "\u0421\u0442\u043E\u0439\u043A\u043E\u0441\u0442\u044C: a1"
   info: {fileID: 1230269328}
 --- !u!1 &2000028098
 GameObject:

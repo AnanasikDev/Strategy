@@ -3,14 +3,19 @@ using UnityEngine.EventSystems;
 using TMPro;
 public class Transaction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float damage;
-    public float hp;
-    public float radius;
+    public float a1;
+    public float a2;
+    public float a3;
+    public float a4;
+    public string format;
 
     [SerializeField] TextMeshProUGUI info;
     public string GetInfo()
     {
-        return $"Урон: {damage}<br>Стойкость: {hp}<br>Радиус действия: {radius}";
+        return format.Replace("a1", a1.ToString())
+                     .Replace("a2", a2.ToString())
+                     .Replace("a3", a3.ToString())
+                     .Replace("a4", a4.ToString());
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
