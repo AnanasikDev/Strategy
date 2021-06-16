@@ -5,6 +5,7 @@ public class Build : MonoBehaviour
     // Canvas script;
 
     [SerializeField] GameObject CurrentBuilding;
+    [SerializeField] Transform BuildingsHandler;
     Camera mainCamera;
     public bool buildable = true;
     public static Build singleton { get; private set; }
@@ -21,7 +22,7 @@ public class Build : MonoBehaviour
             Slot slot = SlotGenerator.singleton.slots.OrderBy(s => (s.transform.position - mousePos).sqrMagnitude).First();
             if (slot.Empty)
             {
-                Transform obj = Instantiate(CurrentBuilding, transform).transform;
+                Transform obj = Instantiate(CurrentBuilding, BuildingsHandler).transform;
                 obj.position = slot.transform.position;
                 slot.Create(obj.gameObject);
             }

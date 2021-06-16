@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public float frequency; // frequency раз в секундку тик
     [SerializeField] public short mass; // Мобов за тик
+    [SerializeField] Transform EnemiesHandler;
     public static Spawner singleton { get; private set; }
     private void Start()
     {
@@ -22,7 +23,7 @@ public class Spawner : MonoBehaviour
         {
             short index = GetFreeSlot();
             if (index == -1) return;
-            Enemy e = Instantiate(enemyPrefab, transform).GetComponent<Enemy>();
+            Enemy e = Instantiate(enemyPrefab, EnemiesHandler).GetComponent<Enemy>();
             float r = Random.Range(950, 1100);
             e.transform.localPosition = new Vector2(Mathf.Sin(Random.Range(-500, 500)) * r, Mathf.Cos(Random.Range(-500, 500)) * r);
             enemies[index] = e;
