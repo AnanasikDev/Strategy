@@ -17,15 +17,16 @@ public class Enemy : MonoBehaviour
             transform.Translate(Direction.forward * speed);
         }
     }
-    public void Destroy(GameObject buildingObject)
+    public void DestroyBuilding(GameObject buildingObject)
     {
-        StartCoroutine("destroy");
+        IEnumerator c = DamageBuilding(buildingObject);
+        StartCoroutine(c);
 
-        IEnumerator destroy()
-        {
-            yield return new WaitForSeconds(1);
-            Destroy(buildingObject); // needa destroy from slot
-        }
+    }
+    IEnumerator DamageBuilding(GameObject buildingObject)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(buildingObject); // needa destroy from slot
     }
     public void GetDamage()
     {

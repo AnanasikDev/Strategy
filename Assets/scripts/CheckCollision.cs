@@ -7,15 +7,15 @@ public class CheckCollision : MonoBehaviour
     {
         enemyScript = transform.parent.GetComponent<Enemy>();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.layer == 6) // Collision with building
         {
             enemyScript.Stop();
-            enemyScript.Destroy(other.gameObject);
+            enemyScript.DestroyBuilding(other.transform.parent.gameObject);
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.layer == 6) // Collision with building
         {

@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 2341967380094964071}
   - component: {fileID: 2341967380094964069}
   - component: {fileID: 2341967380094964068}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Objs_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2341967381867791927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tesla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
