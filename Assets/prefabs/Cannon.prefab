@@ -364,8 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a373b9708bafc6b4eb8e06c2cfd0d690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
-  maxHp: 30
+  hp: 35
+  maxHp: 35
   id: 3
   cost: 50
   hpBar: {fileID: 8998689438018938578}
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74aee6d2d8aa834da44491d6edfc18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 45
+  distance: 55
   Bullet: {fileID: 4256238326981464599, guid: 77dca9bbf8b9f2c458a241ab195b2688, type: 3}
   handler: {fileID: 7596570570992028763}
   freq: 1

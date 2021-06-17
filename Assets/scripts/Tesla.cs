@@ -7,12 +7,15 @@ public class Tesla : MonoBehaviour
     [SerializeField] float damage;
     WaitForSeconds waitForZipper;
     [SerializeField] float distance;
+    [SerializeField] float Freq;
+    [SerializeField] float waitForZip;
     Enemy enemy;
     private void Start()
     {
-        waitForZipper = new WaitForSeconds(0.25f);
+        waitForZipper = new WaitForSeconds(waitForZip);
         distance *= 1000;
-        InvokeRepeating("Damage", 0.5f, 0.5f);
+        Freq = 1 / Freq;
+        InvokeRepeating("Damage", Freq/2, Freq);
     }
     public void Damage()
     {
@@ -51,6 +54,7 @@ public class Tesla : MonoBehaviour
     }
     private void Update()
     {
-        if (enemy != null && enemy.gameObject.activeSelf && zipper.gameObject.activeSelf) SetZipper(transform.position, enemy.transform.position);
+        if (enemy != null && enemy.gameObject.activeSelf && zipper.gameObject.activeSelf) 
+            SetZipper(transform.position, enemy.transform.position);
     }
 }
