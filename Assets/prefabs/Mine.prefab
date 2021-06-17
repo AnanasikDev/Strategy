@@ -130,7 +130,7 @@ MonoBehaviour:
   hp: 20
   maxHp: 20
   id: 2
-  cost: 50
+  cost: 75
   hpBar: {fileID: 2410034229918830743}
 --- !u!114 &922601305734822350
 MonoBehaviour:

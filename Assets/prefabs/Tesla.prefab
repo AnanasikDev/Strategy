@@ -262,7 +262,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 15
   maxHp: 15
-  cost: 10
+  id: 0
+  cost: 35
   hpBar: {fileID: 3232235886090308576}
 --- !u!114 &-1737843090919887791
 MonoBehaviour:

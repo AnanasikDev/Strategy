@@ -37,4 +37,8 @@ public class Shop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         Build.singleton.CurrentBuilding = building;
     }
+    public void ResetBuilding()
+    {
+        Build.singleton.CurrentBuilding = null;
+    }
 }

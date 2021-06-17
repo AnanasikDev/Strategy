@@ -18,7 +18,6 @@ public class Build : MonoBehaviour
     {
         singleton = this;
         mainCamera = Camera.main;
-        buildings = new Building[SlotGenerator.singleton.slots.Length];
     }
     private void Update()
     {

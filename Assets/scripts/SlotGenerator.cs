@@ -6,6 +6,7 @@ public class SlotGenerator : MonoBehaviour
 
     Vector2 fieldSize;
     public Slot[] slots;
+    public int slotsAmount;
     [SerializeField] short slotSize;
     [SerializeField] GameObject slotPrefab;
     [SerializeField] Transform slotsHandler;
@@ -16,9 +17,13 @@ public class SlotGenerator : MonoBehaviour
         canvas = GetComponent<Canvas>();
         singleton = this;
 
-        //fieldSize = new Vector2(Screen.width / canvas.scaleFactor, Screen.height / canvas.scaleFactor);
-        fieldSize = new Vector2(1200, 600);
-        slots = new Slot[Mathf.RoundToInt(fieldSize.x * fieldSize.y / slotSize / slotSize)];
+        fieldSize = new Vector2Int(
+            (int)(Screen.width / canvas.scaleFactor) / slotSize * slotSize,
+            (int)(Screen.height / canvas.scaleFactor) / slotSize * slotSize);
+        //fieldSize = new Vector2(1200, 600);
+        slotsAmount = Mathf.RoundToInt(fieldSize.x * fieldSize.y / slotSize / slotSize);
+        slots = new Slot[slotsAmount];
+        Build.singleton.buildings = new Building[slotsAmount];
         short index = 0;
         for (short i = 0; i < fieldSize.x / slotSize; i++)
         {
