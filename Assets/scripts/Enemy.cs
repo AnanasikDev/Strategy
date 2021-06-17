@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float hp;
     [SerializeField] float maxHp;
     [SerializeField] Transform hpBar;
+    [SerializeField] AudioClip gettingdamageSound;
 
     WaitForSeconds wait;
     public short id;
@@ -78,7 +79,7 @@ public class Enemy : MonoBehaviour
         GameManager.singleton.damage += damage;
         if (hp <= 0)
         {
-            //Destroy(gameObject, 0.1f);
+            AudioSystem.singleton.PlaySound(gettingdamageSound);
             gameObject.SetActive(false);
             return true;
         }

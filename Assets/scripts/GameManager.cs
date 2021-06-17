@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             if (_money != value)
             {
                 _money = value;
-                moneyText.text = "money: " + _money.ToString();
+                moneyText.text = "coins: " + _money.ToString();
             }
         }
     }

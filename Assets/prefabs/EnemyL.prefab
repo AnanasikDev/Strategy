@@ -283,6 +283,7 @@ MonoBehaviour:
   hp: 50
   maxHp: 50
   hpBar: {fileID: 4575050148987338617}
+  gettingdamageSound: {fileID: 8300000, guid: 30a0e1065daba524994e896cf7931753, type: 3}
   id: 0
   destroying: 0
 --- !u!61 &6489554521881861050

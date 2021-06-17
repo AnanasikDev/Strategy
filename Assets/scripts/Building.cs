@@ -5,6 +5,8 @@ public class Building : MonoBehaviour
     [SerializeField] float hp;
     [SerializeField] float maxHp;
     [SerializeField] float damage; // Наносит ударяющему
+
+    [SerializeField] AudioClip crash;
     public short id;
     public int cost;
     public bool alive { get { return hp > 0; } }
@@ -25,6 +27,10 @@ public class Building : MonoBehaviour
     public void Damage(Enemy enemy)
     {
         enemy.GetDamage(damage);
+    }
+    private void OnDestroy()
+    {
+        AudioSystem.singleton.PlaySound(crash);
     }
     private void OnDisable()
     {

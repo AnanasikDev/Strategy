@@ -54,6 +54,7 @@ MonoBehaviour:
   hp: 10
   maxHp: 10
   damage: 4
+  crash: {fileID: 8300000, guid: e75113a2ea1f60d4ebb51dcf2b96e012, type: 3}
   id: 5
   cost: 5
   hpBar: {fileID: 6951002501901810114}

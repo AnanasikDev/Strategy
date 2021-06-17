@@ -41,6 +41,16 @@ public class Build : MonoBehaviour
                 }
             }
         }
+        if (Input.GetMouseButtonDown(1) && Time.timeScale > 0)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Slot slot = SlotGenerator.singleton.slots.OrderBy(s => (s.transform.position - mousePos).sqrMagnitude).First();
+            if (!slot.Empty)
+            {
+                Destroy(slot.handle);
+                slot.handle = null;
+            }
+        }
     }
     int GetFreeId()
     {
