@@ -130,7 +130,7 @@ MonoBehaviour:
   maxHp: 120
   damage: 1
   crash: {fileID: 8300000, guid: e75113a2ea1f60d4ebb51dcf2b96e012, type: 3}
-  id: 6
+  id: 4
   cost: 85
   hpBar: {fileID: 2410034229918830743}
 --- !u!1 &2410034228656916353

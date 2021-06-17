@@ -14,7 +14,7 @@ public class Build : MonoBehaviour
     Camera mainCamera;
     public bool buildable = true;
 
-    public int mineCost = 70;
+    public int mineCost = 75;
     public static Build singleton { get; private set; }
     private void Start()
     {
