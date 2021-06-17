@@ -1,16 +1,23 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // Waves, money, lose and win logic
 
     public Transform TownHall;
     [SerializeField] GameObject loseScreen;
+    [SerializeField] GameObject ExitScreen;
+
+    [SerializeField] Sprite pauseImg;
+    [SerializeField] Sprite continueImg;
+    [SerializeField] Image Img;
 
     [SerializeField] TextMeshProUGUI killsText;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] TextMeshProUGUI damageText;
+
     int _kills;
     public int kills 
     {
@@ -85,5 +92,46 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         loseScreen.SetActive(true);
+    }
+    public void ConfirmExit()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+            Application.Quit();
+    #endif
+    }
+    public void DenyExit()
+    {
+        ExitScreen.SetActive(false);
+        Continue();
+    }
+    public void Exit()
+    {
+        ExitScreen.SetActive(true);
+        Pause();
+    }
+    bool paused = false;
+    void Pause()
+    {
+        Time.timeScale = 0;
+        Img.sprite = continueImg;
+    }
+    void Continue()
+    {
+        Time.timeScale = 1;
+        Img.sprite = pauseImg;
+    }
+    public void ClickPauseBtn()
+    {
+        paused = !paused;
+        if (paused) Pause();
+        else Continue();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) ClickPauseBtn();
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Q)) Exit();
+        if (Input.GetKeyDown(KeyCode.F1)) Application.runInBackground = !Application.runInBackground;
     }
 }
