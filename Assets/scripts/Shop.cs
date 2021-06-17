@@ -10,12 +10,6 @@ public class Shop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         anim = GetComponent<Animator>();
         anim.SetBool("opened", false);
     }
-    public void Click()
-    {
-        opened = !opened;
-        if (opened) Open();
-        else Close();
-    }
     void Open()
     {
         anim.SetBool("opened", true);
@@ -28,10 +22,12 @@ public class Shop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         Build.singleton.buildable = false;
+        Open();
     }
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         Build.singleton.buildable = true;
+        Close();
     }
     public void SetBuilding(Building building)
     {

@@ -3216,7 +3216,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 999445433}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: Click
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
