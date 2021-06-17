@@ -5,17 +5,17 @@ public class Enemy : MonoBehaviour
 {
     // Moving
     bool stopped = false;
-    [SerializeField] float speed;
+    public float speed;
 
     // Kicking
-    [SerializeField] float damage;
-    [SerializeField] float kickDelay;
+    public float damage;
+    public float kickDelay;
 
     [SerializeField] Transform Direction;
 
     // Hp
-    [SerializeField] float hp;
-    [SerializeField] float maxHp;
+    public float hp;
+    public float maxHp;
     [SerializeField] Transform hpBar;
     [SerializeField] AudioClip gettingdamageSound;
 
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             AudioSystem.singleton.PlaySound(gettingdamageSound);
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);    
             return true;
         }
         hpBar.localPosition = new Vector2(-(100 - hp / maxHp * 100), 0);

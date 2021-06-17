@@ -5,26 +5,21 @@ public class Spawner : MonoBehaviour
     // Canvas script;
 
     public Enemy[] enemies;
-    [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] GameObject enemyPrefab;
     [SerializeField] float startDelay;
     public float frequency; // frequency раз в секундку тик
     public short mass; // Мобов за тик
     [SerializeField] Transform EnemiesHandler;
+
+    public float hpMult; // Коэффициент хп
+    public float dmgMult; // Коэффициент дамага
     public static Spawner singleton { get; private set; }
     private void Start()
     {
-        enemies = new Enemy[60];
+        enemies = new Enemy[150];
         singleton = this;
         frequency = 1 / frequency;
         InvokeRepeating("Spawn", startDelay, frequency);
-    }
-    short GetEnemyId()
-    {
-        short i = (short)Random.Range(0, 22);
-        //i = (short)(i == 21 ? 2 : i > 15 ? i = 1 : 0);
-        if (i == 21) return 2; // Large
-        if (i > 15) return 1;  // Medium;
-        else return 0;         // Small
     }
     void Spawn()
     {
@@ -32,11 +27,33 @@ public class Spawner : MonoBehaviour
         {
             short index = GetFreeSlot();
             if (index == -1) return;
-            Enemy e = Instantiate(enemyPrefabs[GetEnemyId()], EnemiesHandler).GetComponent<Enemy>();
+            Enemy e = Instantiate(enemyPrefab, EnemiesHandler).GetComponent<Enemy>();
             float r = Random.Range(950, 1100);
             e.transform.localPosition = new Vector2(Mathf.Sin(Random.Range(-500, 500)) * r, Mathf.Cos(Random.Range(-500, 500)) * r);
             enemies[index] = e;
             e.id = index;
+
+            e.maxHp *= hpMult;
+            e.hp *= hpMult;
+
+            e.damage *= dmgMult;
+
+            // Size
+            /*float size = Random.Range(0.4f, 2f);
+            e.transform.localScale *= size;
+            e.speed *= 1 / size;
+            e.damage *= size;
+            e.hp *= size;
+            e.kickDelay *= size;*/
+
+            float size = Random.Range(0.4f, 0.7f);
+            if (size > 0.65f && GameManager.singleton.level > 2) size *= Random.Range(0.9f, 2.1f);
+
+            e.transform.localScale *= size * 1.1f;
+            e.speed *= 1 / size * 0.8f;
+            e.damage *= size * 0.85f;
+            e.hp *= size * 0.6f;
+            e.kickDelay *= size * 1.2f;
         }
     }
     short GetFreeSlot()

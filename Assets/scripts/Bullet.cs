@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] float damage;
+    public float speed;
+    public float damage;
+    public bool destroy;
     private void Start()
     {
         Destroy(gameObject, 5);
@@ -17,7 +18,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.layer == 7)
         {
             other.GetComponent<Enemy>().GetDamage(damage);
-            Destroy(gameObject);
+            if (destroy) Destroy(gameObject);
         }
     }
 }

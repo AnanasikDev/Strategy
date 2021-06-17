@@ -61,13 +61,18 @@ public class GameManager : MonoBehaviour
                 Spawner.singleton.frequency *= 1.5f;
                 Spawner.singleton.mass *= 2;
             }
+            if (_level % 5 == 0)
+            {
+                Spawner.singleton.hpMult *= 1.5f;
+                Spawner.singleton.dmgMult *= 1.2f;
+            }
             else if (_level % 2 == 0) // Увеличиваем частоту
             {
                 Spawner.singleton.frequency *= 1.25f;
             }
             else // Увеличиваем кол-во за раз
             {
-                Spawner.singleton.mass = (short)Mathf.RoundToInt(Spawner.singleton.mass * 1.5f);
+                Spawner.singleton.mass = (short)Mathf.RoundToInt(Spawner.singleton.mass * 1.15f);
             }
         }
     }

@@ -7,6 +7,8 @@ public class Cannon : MonoBehaviour
     [SerializeField] GameObject Bullet;
     [SerializeField] Transform handler;
     [SerializeField] float freq;
+    [SerializeField] float damage;
+    [SerializeField] float bulletSpeed;
     Building building;
     bool enemyNear = false;
     private void Start()
@@ -44,6 +46,12 @@ public class Cannon : MonoBehaviour
     void Shoot()
     {
         if (enemyNear)
-            Instantiate(Bullet, transform.position, handler.transform.rotation, GameManager.singleton.transform);
+        {
+            Bullet b = Instantiate(Bullet, transform.position, handler.transform.rotation, GameManager.singleton.transform).GetComponent<Bullet>();
+            b.damage = damage;
+            b.speed = bulletSpeed;
+            b.destroy = true;
+        }
+            
     }
 }

@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.4
-  damage: 5
+  damage: 3
   kickDelay: 1
   Direction: {fileID: 1195404428}
   hp: 25

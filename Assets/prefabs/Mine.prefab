@@ -132,7 +132,7 @@ MonoBehaviour:
   damage: 0
   crash: {fileID: 8300000, guid: e75113a2ea1f60d4ebb51dcf2b96e012, type: 3}
   id: 2
-  cost: 75
+  cost: 70
   hpBar: {fileID: 2410034229918830743}
 --- !u!114 &922601305734822350
 MonoBehaviour:
