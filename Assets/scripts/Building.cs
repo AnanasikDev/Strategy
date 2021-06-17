@@ -4,6 +4,7 @@ public class Building : MonoBehaviour
 {
     [SerializeField] float hp;
     [SerializeField] float maxHp;
+    [SerializeField] float damage; // Наносит ударяющему
     public short id;
     public int cost;
     public bool alive { get { return hp > 0; } }
@@ -20,6 +21,10 @@ public class Building : MonoBehaviour
         }
         hpBar.localPosition = new Vector2(-(100 - hp/maxHp*100), 0);
         return false;
+    }
+    public void Damage(Enemy enemy)
+    {
+        enemy.GetDamage(damage);
     }
     private void OnDisable()
     {

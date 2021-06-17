@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
     }
     public void DestroyBuilding(GameObject buildingObject)
     {
+        if (hp <= 0) return;
         destroying = true;
         Building building = buildingObject.GetComponent<Building>();
         IEnumerator c = DamageBuilding(building);
@@ -59,13 +60,14 @@ public class Enemy : MonoBehaviour
     {
         if(hp > 0 && building.alive)
         {
+            building.Damage(this);
             if (building.GetDamage(damage))
             {
                 destroying = false;
                 GetDirInfo();
                 yield break;
             }
-            yield return new WaitForSeconds(1);
+            yield return wait;
             yield return DamageBuilding(building);
         }
         else destroying = false;

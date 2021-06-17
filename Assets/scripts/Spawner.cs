@@ -6,8 +6,9 @@ public class Spawner : MonoBehaviour
 
     public Enemy[] enemies;
     [SerializeField] GameObject[] enemyPrefabs;
-    [SerializeField] public float frequency; // frequency раз в секундку тик
-    [SerializeField] public short mass; // Мобов за тик
+    [SerializeField] float startDelay;
+    public float frequency; // frequency раз в секундку тик
+    public short mass; // Мобов за тик
     [SerializeField] Transform EnemiesHandler;
     public static Spawner singleton { get; private set; }
     private void Start()
@@ -15,7 +16,7 @@ public class Spawner : MonoBehaviour
         enemies = new Enemy[60];
         singleton = this;
         frequency = 1 / frequency;
-        InvokeRepeating("Spawn", frequency, frequency);
+        InvokeRepeating("Spawn", startDelay, frequency);
     }
     short GetEnemyId()
     {
