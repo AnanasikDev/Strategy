@@ -63,7 +63,7 @@ RectTransform:
   m_GameObject: {fileID: 1377388669255856084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.19999999, z: 1}
+  m_LocalScale: {x: 1.4, y: 0.28, z: 1}
   m_Children:
   - {fileID: 4575050148987338617}
   m_Father: {fileID: 6489554521881860999}
@@ -71,7 +71,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 72.3}
+  m_AnchoredPosition: {x: 0, y: 95.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7991775184543262006
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 6489554521881861049}
   - component: {fileID: 6489554521881861048}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: EnemyS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ RectTransform:
   m_GameObject: {fileID: 6489554521881860998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -465.7058}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 6489554521838624990}
   - {fileID: 1195404428}
@@ -276,12 +276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd4a019f578fad4fab9ded1a95ee7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.4
-  damage: 5
-  kickDelay: 1
+  speed: 0.85
+  damage: 0.8
+  kickDelay: 0.5
   Direction: {fileID: 1195404428}
-  hp: 25
-  maxHp: 25
+  hp: 5
+  maxHp: 5
   hpBar: {fileID: 4575050148987338617}
   id: 0
   destroying: 0
