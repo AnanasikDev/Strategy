@@ -112,17 +112,6 @@ public class Enemy : MonoBehaviour
 }
 public static class Ext
 {
-    public static Building[] Sort(this IEnumerable<Building> collection, System.Func<Building, float> f)
-    {
-        foreach (Building obj in collection)
-        {
-            if (obj.gameObject != null && obj.gameObject.layer != 8)
-            {
-                return collection.OrderBy(f).ToArray();
-            }
-        }
-        return new Building[0];
-    }
     public static int FirstEmpty(this object[] collection, object format = null)
     {
         for (int i = 0; i < collection.Length; i++)

@@ -7,7 +7,7 @@ public class SlotGenerator : MonoBehaviour
     Vector2 fieldSize;
     public Slot[] slots;
     public int slotsAmount;
-    [SerializeField] short slotSize;
+    public short slotSize;
     [SerializeField] GameObject slotPrefab;
     [SerializeField] Transform slotsHandler;
     Canvas canvas;

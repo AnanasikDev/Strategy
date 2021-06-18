@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -18,6 +17,6 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("main");
         while (true) if (SceneManager.GetActiveScene().isLoaded) break;
-        InterScene.startMoney = 1000000;
+        InterScene.startMoney = 100000;
     }
 }

@@ -13,6 +13,7 @@ public class Build : MonoBehaviour
     [SerializeField] Transform BuildingsHandler;
     Camera mainCamera;
     public bool buildable = true;
+    [SerializeField] Transform selectedSlot;
 
     int mineCost = 75;
     public static Build singleton { get; private set; }
@@ -23,8 +24,11 @@ public class Build : MonoBehaviour
     }
     private void Update()
     {
+        selectedSlot.transform.position = new Vector2(Mathf.RoundToInt(Input.mousePosition.x) / SlotGenerator.singleton.slotSize * SlotGenerator.singleton.slotSize,
+                                                      Mathf.RoundToInt(Input.mousePosition.y) / SlotGenerator.singleton.slotSize * SlotGenerator.singleton.slotSize);
         if (CurrentBuilding != null)
-        if (Input.GetMouseButton(0) && buildable && Time.timeScale > 0)
+        {
+            if (Input.GetMouseButton(0) && buildable && Time.timeScale > 0)
         {
             Mine mine;
             bool m = CurrentBuilding.TryGetComponent<Mine>(out mine);
@@ -48,6 +52,7 @@ public class Build : MonoBehaviour
                 }
 
             }
+        }
         }
         if (Input.GetMouseButtonDown(1) && Time.timeScale > 0)
         {

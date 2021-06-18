@@ -13,12 +13,21 @@ public class Spawner : MonoBehaviour
 
     public float hpMult; // Коэффициент хп
     public float dmgMult; // Коэффициент дамага
+
+    Canvas canvas;
+    float minDistance;
     public static Spawner singleton { get; private set; }
     private void Start()
     {
         enemies = new Enemy[150];
         singleton = this;
         frequency = 1 / frequency;
+
+        canvas = GetComponent<Canvas>();
+        minDistance = Vector2.Distance(
+            new Vector2(0, 0),
+            new Vector2(Screen.width / canvas.scaleFactor / 2, Screen.height / canvas.scaleFactor / 2));
+
         InvokeRepeating("Spawn", startDelay, frequency);
     }
     void Spawn()
@@ -28,7 +37,7 @@ public class Spawner : MonoBehaviour
             short index = GetFreeSlot();
             if (index == -1) return;
             Enemy e = Instantiate(enemyPrefab, EnemiesHandler).GetComponent<Enemy>();
-            float r = Random.Range(1050, 1300);
+            float r = Random.Range(minDistance + 10, minDistance + 150);
             e.transform.localPosition = new Vector2(Mathf.Sin(Random.Range(-500, 500)) * r, Mathf.Cos(Random.Range(-500, 500)) * r);
             enemies[index] = e;
             e.id = index;
