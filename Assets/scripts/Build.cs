@@ -14,7 +14,7 @@ public class Build : MonoBehaviour
     Camera mainCamera;
     public bool buildable = true;
 
-    public int mineCost = 75;
+    int mineCost = 75;
     public static Build singleton { get; private set; }
     private void Start()
     {
@@ -24,7 +24,7 @@ public class Build : MonoBehaviour
     private void Update()
     {
         if (CurrentBuilding != null)
-        if (Input.GetMouseButtonDown(0) && buildable && Time.timeScale > 0)
+        if (Input.GetMouseButton(0) && buildable && Time.timeScale > 0)
         {
             Mine mine;
             bool m = CurrentBuilding.TryGetComponent<Mine>(out mine);

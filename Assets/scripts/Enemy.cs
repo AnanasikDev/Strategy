@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 public class Enemy : MonoBehaviour
 {
@@ -33,9 +34,17 @@ public class Enemy : MonoBehaviour
 
         if (Build.singleton.GetBuildedId() != -1)
         {
-            nearestBuilding = Build.singleton.buildings
+            /*nearestBuilding = Build.singleton.buildings
                 .Where(b => b != null)
-                .OrderBy(b => (transform.position - b.transform.position).sqrMagnitude).First().transform;
+                .Where(b => b.gameObject.layer != 8)
+                .Sort(b => (transform.position - b.transform.position).sqrMagnitude).First().transform;
+*/
+            Building[] buildings = Build.singleton.buildings
+                .Where(b => b != null)
+                .Where(b => b.gameObject.layer != 8).ToArray();
+
+            if (buildings.FirstEmpty() == -1) nearestBuilding = GameManager.singleton.TownHall;
+            else nearestBuilding = buildings.OrderBy(b => (transform.position - b.transform.position).sqrMagnitude).First().transform;
         }
 
         else nearestBuilding = GameManager.singleton.TownHall;
@@ -99,5 +108,26 @@ public class Enemy : MonoBehaviour
         GameManager.singleton.kills++;
         Spawner.singleton.enemies[id] = null;
         Destroy(gameObject, 1);
+    }
+}
+public static class Ext
+{
+    public static Building[] Sort(this IEnumerable<Building> collection, System.Func<Building, float> f)
+    {
+        foreach (Building obj in collection)
+        {
+            if (obj.gameObject != null && obj.gameObject.layer != 8)
+            {
+                return collection.OrderBy(f).ToArray();
+            }
+        }
+        return new Building[0];
+    }
+    public static int FirstEmpty(this object[] collection, object format = null)
+    {
+        for (int i = 0; i < collection.Length; i++)
+            if (collection[i] == format)
+                return i;
+        return -1;
     }
 }
