@@ -24,8 +24,8 @@ public class Build : MonoBehaviour
     }
     private void Update()
     {
-        selectedSlot.transform.position = new Vector2(Mathf.RoundToInt(Input.mousePosition.x) / SlotGenerator.singleton.slotSize * SlotGenerator.singleton.slotSize,
-                                                      Mathf.RoundToInt(Input.mousePosition.y) / SlotGenerator.singleton.slotSize * SlotGenerator.singleton.slotSize);
+        selectedSlot.transform.position = new Vector2(Mathf.RoundToInt(Input.mousePosition.x + SlotGenerator.singleton.slotSize/2) / SlotGenerator.singleton.slotSize * SlotGenerator.singleton.slotSize,
+                                                      Mathf.RoundToInt(Input.mousePosition.y + SlotGenerator.singleton.slotSize/2) / SlotGenerator.singleton.slotSize * SlotGenerator.singleton.slotSize);
         if (CurrentBuilding != null)
         {
             if (Input.GetMouseButton(0) && buildable && Time.timeScale > 0)

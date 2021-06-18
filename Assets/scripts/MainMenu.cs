@@ -7,6 +7,12 @@ public class MainMenu : MonoBehaviour
     {
         DontDestroyOnLoad(transform.gameObject);
     }
+    public void HardCoreMode()
+    {
+        SceneManager.LoadScene("main");
+        while (true) if (SceneManager.GetActiveScene().isLoaded) break;
+        InterScene.startMoney = 0;
+    }
     public void ClassicMode()
     {
         SceneManager.LoadScene("main");

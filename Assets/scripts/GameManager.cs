@@ -95,7 +95,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         singleton = this;
-        DontDestroyOnLoad(transform.gameObject);
     }
     private void Start()
     {
@@ -144,7 +143,8 @@ public class GameManager : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("main");
+        while (true) if (SceneManager.GetActiveScene().isLoaded) break;
         Continue();
     }
     public void ClassicMode()
@@ -167,11 +167,16 @@ public class GameManager : MonoBehaviour
             money = 100_000;
         }
     }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("entry");
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) ClickPauseBtn();
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Q)) Exit();
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.R)) Restart();
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.B)) BackToMenu();
         if (Input.GetKeyDown(KeyCode.F1)) Application.runInBackground = !Application.runInBackground;
         if (!playing && Input.anyKeyDown) Restart();
     }
