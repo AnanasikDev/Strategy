@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d978d9c4b6576064bb7d32a96c0482fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 4256238326981464599, guid: 77dca9bbf8b9f2c458a241ab195b2688, type: 3}
+  Bullet: {fileID: 4256238326981464599, guid: 441497f169ea6fc4ab7ebc203cfa3b85, type: 3}
   handler: {fileID: 7596570570992028763}
   freq: 0.2
   damage: 15

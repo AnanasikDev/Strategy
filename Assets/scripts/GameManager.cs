@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // Waves, money, lose and win logic
 
-    public Transform TownHall;
+    public bool playing = true;
+
     [SerializeField] GameObject loseScreen;
     [SerializeField] GameObject ExitScreen;
 
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         loseScreen.SetActive(true);
+        playing = false;
     }
     public void ConfirmExit()
     {
@@ -133,10 +136,16 @@ public class GameManager : MonoBehaviour
         if (paused) Pause();
         else Continue();
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Continue();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) ClickPauseBtn();
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Q)) Exit();
         if (Input.GetKeyDown(KeyCode.F1)) Application.runInBackground = !Application.runInBackground;
+        if (!playing && Input.anyKeyDown) Restart();
     }
 }

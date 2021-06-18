@@ -20,7 +20,7 @@ public class Bomb : MonoBehaviour
         if (other.gameObject.layer == 7) // enemy
         {
             enemy = other.GetComponent<Enemy>();
-            StartCoroutine("Damage");
+            if (gameObject.activeSelf) StartCoroutine("Damage");
         }
     }
     private void OnTriggerStay2D(Collider2D other)
@@ -39,7 +39,7 @@ public class Bomb : MonoBehaviour
     }
     IEnumerator Damage()
     {
-        if (enemy != null)
+        if (enemy != null && gameObject.activeSelf)
         {
             enemy.GetDamage(damage);
             if (building.GetDamage(damage))

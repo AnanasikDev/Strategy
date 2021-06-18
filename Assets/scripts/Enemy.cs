@@ -43,11 +43,11 @@ public class Enemy : MonoBehaviour
                 .Where(b => b != null)
                 .Where(b => b.gameObject.layer != 8).ToArray();
 
-            if (buildings.FirstEmpty() == -1) nearestBuilding = GameManager.singleton.TownHall;
+            if (buildings.FirstEmpty() == -1) nearestBuilding = TownHall.singleton.transform;
             else nearestBuilding = buildings.OrderBy(b => (transform.position - b.transform.position).sqrMagnitude).First().transform;
         }
 
-        else nearestBuilding = GameManager.singleton.TownHall;
+        else nearestBuilding = TownHall.singleton.transform;
 
         Direction.transform.LookAt(nearestBuilding);
     }

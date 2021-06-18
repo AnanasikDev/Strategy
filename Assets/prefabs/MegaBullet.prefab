@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.90588236, g: 0.28627452, b: 0.28627452, a: 1}
+  m_Color: {r: 0.6603774, g: 0.17070128, b: 0.17070128, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2610206636594050979}
   - component: {fileID: 1436364030622895444}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: MegaBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ RectTransform:
   m_GameObject: {fileID: 4256238326981464599}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2676226877976598018}
   m_Father: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598e5c9ad89b16e4a911847512f13d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 1
   damage: 25
   destroy: 0
 --- !u!58 &2610206636594050979
