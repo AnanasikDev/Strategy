@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
     // Waves, money, lose and win logic
@@ -94,6 +95,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         singleton = this;
+        DontDestroyOnLoad(transform.gameObject);
+    }
+    private void Start()
+    {
+        money = InterScene.startMoney;
     }
     public void Lose()
     {
@@ -141,10 +147,31 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Continue();
     }
+    public void ClassicMode()
+    {
+        SceneManager.LoadScene("main");
+        StartCoroutine(wait());
+        IEnumerator wait()
+        {
+            yield return new WaitForEndOfFrame();
+            money = 0;
+        }
+    }
+    public void SandBoxMode()
+    {
+        SceneManager.LoadScene("main");
+        StartCoroutine(wait());
+        IEnumerator wait()
+        {
+            yield return new WaitForEndOfFrame();
+            money = 100_000;
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) ClickPauseBtn();
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Q)) Exit();
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.R)) Restart();
         if (Input.GetKeyDown(KeyCode.F1)) Application.runInBackground = !Application.runInBackground;
         if (!playing && Input.anyKeyDown) Restart();
     }
