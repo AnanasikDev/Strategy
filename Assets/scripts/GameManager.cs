@@ -145,7 +145,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("main");
         while (true) if (SceneManager.GetActiveScene().isLoaded) break;
-        Continue();
+        StartCoroutine(wait());
+
+        IEnumerator wait() 
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
+            Time.timeScale = 1;
+        }
     }
     public void ClassicMode()
     {

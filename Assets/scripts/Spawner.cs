@@ -37,8 +37,8 @@ public class Spawner : MonoBehaviour
             short index = GetFreeSlot();
             if (index == -1) return;
             Enemy e = Instantiate(enemyPrefab, EnemiesHandler).GetComponent<Enemy>();
-            float r = Random.Range(minDistance + 10, minDistance + 150);
-            e.transform.localPosition = new Vector2(Mathf.Sin(Random.Range(-500, 500)) * r, Mathf.Cos(Random.Range(-500, 500)) * r);
+            float r = Random.Range(minDistance + 100, minDistance + 220);
+            e.transform.localPosition = new Vector2(Mathf.Sin(Random.Range(-1000, 1000)) * r, Mathf.Cos(Random.Range(-1000, 1000)) * r);
             enemies[index] = e;
             e.id = index;
 

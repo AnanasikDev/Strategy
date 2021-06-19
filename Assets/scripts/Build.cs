@@ -15,7 +15,7 @@ public class Build : MonoBehaviour
     public bool buildable = true;
     [SerializeField] Transform selectedSlot;
 
-    int mineCost = 75;
+    [SerializeField] int mineCost = 75;
     public static Build singleton { get; private set; }
     private void Start()
     {
@@ -29,30 +29,31 @@ public class Build : MonoBehaviour
         if (CurrentBuilding != null)
         {
             if (Input.GetMouseButton(0) && buildable && Time.timeScale > 0)
-        {
-            Mine mine;
-            bool m = CurrentBuilding.TryGetComponent<Mine>(out mine);
-            if (CurrentBuilding.cost <= GameManager.singleton.money ||
-               (m && mineCost <= GameManager.singleton.money))
             {
-                Vector3 mousePos = Input.mousePosition;
-                Slot slot = SlotGenerator.singleton.slots.OrderBy(s => (s.transform.position - mousePos).sqrMagnitude).First();
-                if (slot.Empty)
+                Mine mine;
+                bool m = CurrentBuilding.TryGetComponent<Mine>(out mine);
+                if ((m && mineCost <= GameManager.singleton.money) || 
+                    (!m && CurrentBuilding.cost <= GameManager.singleton.money))
                 {
-                    Transform obj = Instantiate(CurrentBuilding, BuildingsHandler).transform;
-                    obj.position = slot.transform.position;
-                    slot.Create(obj.gameObject);
-                    buildings[GetFreeId()] = obj.GetComponent<Building>();
-                    GameManager.singleton.money -= CurrentBuilding.cost;
-                    if (m)
+                    Vector3 mousePos = Input.mousePosition;
+                    Slot slot = SlotGenerator.singleton.slots.OrderBy(s => (s.transform.position - mousePos).sqrMagnitude).First();
+                    if (slot.Empty)
                     {
-                        mineCost = Mathf.RoundToInt(mineCost * 1.75f);
-                        costTexts[CurrentBuilding.id].text = mineCost.ToString();
+                        Transform obj = Instantiate(CurrentBuilding, BuildingsHandler).transform;
+                        obj.position = slot.transform.position;
+                        slot.Create(obj.gameObject);
+                        buildings[GetFreeId()] = obj.GetComponent<Building>();
+                        if (m)
+                        {
+                            GameManager.singleton.money -= mineCost;
+                            mineCost = Mathf.RoundToInt(mineCost * 1.75f);
+                            costTexts[CurrentBuilding.id].text = mineCost.ToString();
+                        }
+                        else GameManager.singleton.money -= CurrentBuilding.cost;
                     }
-                }
 
+                }
             }
-        }
         }
         if (Input.GetMouseButtonDown(1) && Time.timeScale > 0)
         {
