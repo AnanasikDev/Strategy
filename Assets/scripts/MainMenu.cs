@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Start()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
     public void HardCoreMode()
     {
         SceneManager.LoadScene("main");
